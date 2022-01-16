@@ -1,0 +1,67 @@
+﻿Action and Func Delegates in C#</h2>
+<p>Let’s first understand what delegates mean in C# so that we can better understand Action and Func delegates.<br />
+<strong>Delegate</strong>: In simple terms, we can say a delegate is a reference to a method. A delegate keeps all the information required to call a method like a delegate name, parameter data types, and return data type.<br />
+Delegate provides a way that tells us which method is to be called when an event is triggered. <br />
+For example, if we click on a button on a web form, the program would call a specific method.</p>
+<p>Let’s see how we can declare a delegate.<br />
+We use the  <code class="EnlighterJSRAW" data-enlighter-language="generic">delegate</code> keyword to declare a delegate.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">delegate void Max(int i, int j);</pre>
+<p>Here we have declared 'Max' a void delegate. Void delegate means we cannot expect any return value from the referenced method.</p>
+<p><strong>Two Types of delegates:</strong></p>
+<ol>
+	<li>Action Delegate</li>
+	<li>Func Delegate</li>
+</ol>
+<p>&nbsp;</p>
+<h2>Action Delegate and Its Use</h2>
+<p>Action is a delegate that points to a method that does not return a value.<br />
+It can also contain parameters of the same type or different types. Action delegate points to a method with zero, one, or more input parameters to the methods. <br />
+Let’s understand Action delegate by a practical example:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">public class Action_Delegate_Class
+  {
+
+      // Method
+      public static void GetCompleteName(string FName, string LName)
+      {
+          string CompleteName = FName + " " + LName;
+
+          Console.WriteLine($"{CompleteName }");
+      }
+
+
+      static public void Main()
+      {
+          Action&lt;string, string&gt; Concate = GetCompleteName;
+
+          Concate("Ricky", "Martin ");
+      }
+
+  }</pre>
+<p>&nbsp;</p>
+<h2>Func Delegate and Its Use</h2>
+<p>Func delegate is a type of delegate(pointer) that points to a method that accepts none, one or more arguments, and returns a value to the delegate. The last parameter is regarded as an out parameter.<br />
+Let's have an example to better understand a Func Delegate:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">public class Func_Delegate_Class
+   {
+
+       // Method
+       public static decimal Percentage_Calculation(int marks, int total)
+       {
+           return (((decimal)marks / total) * 100);
+       }
+
+       static public void Main()
+       {
+           Func&lt;int, int, decimal&gt; Get_Percentage = Percentage_Calculation;
+
+           decimal MarksPercent = Get_Percentage(320, 500);
+           
+           Console.WriteLine($"{MarksPercent }");
+       }
+   }</pre>
+<p>In the above-given example, we are sending two numbers for getting a percentage and expect a decimal in return.<br />
+<code>Func&lt;int, int, decimal&gt;</code> indicates that we are sending two integer values and the return type is decimal. So we come to know that the last parameter definition is the return datatype.</p>
+<p>&nbsp;</p>
+<h2>Difference between Action and Func Delegate</h2>
+<p>An Action type delegate is the same as Func delegate but the difference is that the Action delegate doesn't return a value and Func delegate returns a value.<br />
+We should use Func delegate when 
